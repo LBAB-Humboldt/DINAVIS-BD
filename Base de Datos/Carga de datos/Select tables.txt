@@ -1,0 +1,41 @@
+/*
+Author: Luis Hernán Cárdenas Guerrero
+Creation date: 01/06/2015
+Query name: Selección de las tablas de la base de datos Dinavis.
+*/
+/*
+La sentencia extrae los datos existentes en cada una de las tablas.
+*/
+select * from temporalmapuser;
+select * from temporalmeauser;
+select * from temporaltaxuser;
+select * from dinavismaster;
+select * from temporal;
+select * from class;
+select * from collection;
+select * from continent;
+select * from country;
+select * from habitat;
+select * from institutioncode;
+select * from kingdom;
+select * from region;
+select * from sex;
+select * from basin;
+select * from biome;
+select * from family;
+select * from genus;
+select * from layer;
+select * from park;
+select * from phylum;
+select * from state;
+select * from source;
+select * from specie;
+select * from measurement;
+select * from CitesStatus;
+select * from invasiveStatus;
+select * from Threatstatus;
+select * from EndemicStatus;
+select * from UseStatus;
+select * from SpatialRecord;
+select * from Municipality;
+select * from LayersValues;

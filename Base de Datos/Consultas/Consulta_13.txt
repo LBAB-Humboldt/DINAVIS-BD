@@ -1,0 +1,19 @@
+﻿/*
+Author: Luis HernanCardenas Guerrero
+Creation date: 03/04/2015
+Query name: Representatividad UICN
+Number related tables: 4
+Related tables: dinavismaster, Specie, UICN, Taxonomy.
+Target: Number of species and number of rows in IUCN
+Query semantics: ¿Cuántas especies están en DINAVIS de las que están en UICN?
+Number Filters: 0
+Filters:
+*/
+SELECT `taxonomy`.`tax_ScientificName`, count(`cites`.`cit_FullNote`) as sx, 
+( SELECT count(`cites`.`cit_ListedUnder`)*100/count(`cites`.`cit_FullNote`)
+  FROM `cites` AS a
+  WHERE `cites`.`cit_ListedUnder` = `taxonomy`.`tax_ScientificName`
+) as porcentaje
+/*La sentencia calcula el porcentaje*/
+FROM `taxonomy`, `cites`
+GROUP BY `taxonomy`.`tax_ScientificName`

@@ -1,0 +1,214 @@
+﻿/*
+Author: Luis HernanCardenas Guerrero
+Creation date: 03/04/2015
+Query name: Completa
+Number related tables: 19
+Related tables: dinavismaster, Specie, Measurement, SpatialRecord, ThreatStatus, Taxonomy, Kingdom, Phylum, Class, Orders, Genus, subgenus, specificEpithet, infraSpecificEpithet, invasiveStatus, endemicStatus, citesStatus, habitat, Region.
+Target: 
+Query semantics: ¿Cuál(es) especies (y/o registros y/o medidas) del orden X (clase, género o demás) son endémicas (amenazadas, invasoras o con uso), se encuentran en el habitat Y (o bioma, municpio o demás) y tienen la medida Z (measurement) mayor a w (menor que. diferente, igual)?
+Number Filters: 17
+Filters:kin_Description, phy_Description, cla_Description, ord_Description, gen__Description, subgen__Description, specifEpi_Description, infSpeEpi_InfraspecificEpithet, ThrSta_Description, citSta_Cites, invSta_Invasive, endSta_Endemic, ThrSta_Use, hab_description,  reg_description, LayerValues, mea_Description, mea_MeasurementUnit, mea_MeasurementValue. 
+*/
+
+SELECT 
+`dinavismaster`.`dima_Id`,
+`taxonomy`.`tax_Id`,
+`taxonomy`.`tax_IdentificationQualifier`,
+`taxonomy`.`tax_NamePublishedIn`,
+`taxonomy`.`tax_ScientificName`,
+`taxonomy`.`tax_ScientificNameAuthorship`,
+`taxonomy`.`tax_ScientificNameID`,
+`taxonomy`.`tax_TaxonConceptId`,
+`taxonomy`.`tax_TaxonomicStatus`,
+`taxonomy`.`tax_TaxonRank`,
+`taxonomy`.`tax_TaxonRemarks`,
+`taxonomy`.`tax_VernacularName`,
+`taxonomy`.`tax_originalNameUsage`,
+`taxonomy`.`tax_taxValidationLBAB`,
+
+`specie`.`spe_Id`,
+`specie`.`spe_Description`,
+`specie`.`spe_speciesBlank`,
+`specie`.`spe_Created_At`,
+`specie`.`spe_Iucn_Id`,
+`specie`.`spe_SpeciesOriginal`,
+`specie`.`spe_AcceptedNameUsage`,
+`specie`.`spe_IdOld`,
+
+`measurement`.`mea_Id`,
+`measurement`.`mea_MeasurementDeterminedBy`,
+`measurement`.`mea_MeasurementRemarks`,
+`measurement`.`mea_MeasurementType`,
+`measurement`.`mea_MeasurementUnit`,
+`measurement`.`mea_MeasurementValue`,
+`measurement`.`mea_Standard`,
+`measurement`.`mea_Topic`,
+
+`spatialrecord`.`spaRec_Id`,
+`spatialrecord`.`spaRec_OccurrenceID`,
+`spatialrecord`.`spaRec_AccessRights`,
+`spatialrecord`.`spaRec_RightsHolder`,
+`spatialrecord`.`spaRec_Rights`,
+`spatialrecord`.`spaRec_CoordinateUncertaintyInMeters`,
+`spatialrecord`.`spaRec_DecimalLatitude`,
+`spatialrecord`.`spaRec_DecimalLongitude`,
+`spatialrecord`.`spaRec_EventDate`,
+`spatialrecord`.`spaRec_GeoreferenceRemarks`,
+`spatialrecord`.`spaRec_GeodeticDatum`,
+`spatialrecord`.`spaRec_GeoreferencedBy`,
+`spatialrecord`.`spaRec_GeoreferencedDate`,
+`spatialrecord`.`spaRec_GeoreferenceProtocol`,
+`spatialrecord`.`spaRec_GeoreferenceSource`,
+`spatialrecord`.`spaRec_GeoreferenceVerificationStatus`,
+`spatialrecord`.`spaRec_GeoValidationLBAB`,
+`spatialrecord`.`spaRec_CatalogNumber`,
+`spatialrecord`.`spaRec_LBABuse`,
+`spatialrecord`.`spaRec_Locality`,
+`spatialrecord`.`spaRec_LocationRemarks`,
+`spatialrecord`.`spaRec_RecordBasis`,
+`spatialrecord`.`spaRec_RegisterDate`,
+`spatialrecord`.`spaRec_RegisterInLBABModels`,
+`spatialrecord`.`spaRec_AssociatedMedia`,
+`spatialrecord`.`spaRec_VerbatimCoordinateSystem`,
+`spatialrecord`.`spaRec_VerbatimLatitude`,
+`spatialrecord`.`spaRec_VerbatimLocality`,
+`spatialrecord`.`spaRec_VerbatimLongitude`,
+`spatialrecord`.`spaRec_RecordedBy`,
+`spatialrecord`.`spaRec_OccurrenceRemarks`,
+
+`threatstatus`.`thrSta_Id`,
+`threatstatus`.`thrSta_Description`,
+`threatstatus`.`thrSta_UicnNational`,
+`threatstatus`.`thrSta_DateUicnNational`,
+`threatstatus`.`thrSta_UicnInternational`,
+`threatstatus`.`thrSta_DateUicnInternational`,
+
+`taxonomy`.`tax_Id`,
+`taxonomy`.`tax_IdentificationQualifier`,
+`taxonomy`.`tax_NamePublishedIn`,
+`taxonomy`.`tax_ScientificName`,
+`taxonomy`.`tax_ScientificNameAuthorship`,
+`taxonomy`.`tax_ScientificNameID`,
+`taxonomy`.`tax_TaxonConceptId`,
+`taxonomy`.`tax_TaxonomicStatus`,
+`taxonomy`.`tax_TaxonRank`,
+`taxonomy`.`tax_TaxonRemarks`,
+`taxonomy`.`tax_VernacularName`,
+`taxonomy`.`tax_originalNameUsage`,
+`taxonomy`.`tax_taxValidationLBAB`,
+
+`kingdom`.`kin_Id`,
+`kingdom`.`kin_Description`,
+`kingdom`.`kin_LSID`,
+
+`phylum`.`phy_Id`,
+`phylum`.`phy_Description`,
+`phylum`.`phy_LSID`,
+
+`class`.`cla_Id`,
+`class`.`cla_Description`,
+`class`.`cla_LSID`,
+
+`orders`.`ord_Id`,
+`orders`.`ord_Description`,
+`orders`.`ord_LSID`,
+
+`genus`.`gen_Id`,
+`genus`.`gen_Description`,
+`genus`.`gen_LSID`,
+
+`subgenus`.`subGen_Id`,
+`subgenus`.`subGen_Subgenus`,
+
+`specificepithet`.`speEpi_Id`,
+`specificepithet`.`speEpi_SpecificEpithet`,
+
+`infraspecificepithet`.`infSpeEpi_Id`,
+`infraspecificepithet`.`infSpeEpi_InfraspecificEpithet`,
+
+`invasivestatus`.`invSta_Id`,
+`invasivestatus`.`invSta_Invasive`,
+`invasivestatus`.`invSta_DateInvasive`,
+
+`endemicstatus`.`endSta_Id`,
+`endemicstatus`.`endSta_Endemic`,
+`endemicstatus`.`endSta_DateEndemic`,
+
+
+`citesstatus`.`citSta_Id`,
+`citesstatus`.`citSta_Cites`,
+`citesstatus`.`citSta_DateCites`,
+`citesstatus`.`citSta_SourceCites`,
+
+`habitat`.`hab_Id`,
+`habitat`.`hab_Description`,
+`habitat`.`hab_Habitat`,
+`habitat`.`hab_HabitatUICN`,
+`habitat`.`hab_HabitatIGAC`,
+
+`region`.`reg_Id`,
+`region`.`reg_Description`
+
+
+
+
+FROM `dinavis`.`dinavismaster`
+
+/*La sentencia LEFT OUTER JOIN retorna la pareja de todos los valores de la tabla izquierda con los valores de la tabla de la derecha correspondientes, o retorna un valor nulo NULL en caso de no correspondencia.*/
+LEFT OUTER JOIN `dinavis`.`map` ON `dinavismaster`.`map_Id` = `map`.`map_Id`
+LEFT OUTER JOIN `dinavis`.`spatialrecord` ON `dinavismaster`.`spaRec_Id` = `spatialrecord`.`spaRec_Id`
+LEFT OUTER JOIN `dinavis`.`continent` ON `dinavismaster`.`con_Id` = `continent`.`con_Id`
+LEFT OUTER JOIN `dinavis`.`country` ON `dinavismaster`.`cou_Id` = `country`.`cou_Id`
+LEFT OUTER JOIN `dinavis`.`department` ON `dinavismaster`.`dep_Id` = `department`.`dep_Id`
+LEFT OUTER JOIN `dinavis`.`municipality` ON `dinavismaster`.`mun_Id` = `municipality`.`mun_Id`
+LEFT OUTER JOIN `dinavis`.`habitat` ON `dinavismaster`.`hab_Id` = `habitat`.`hab_Id`
+LEFT OUTER JOIN `dinavis`.`region` ON `dinavismaster`.`reg_Id` = `region`.`reg_Id`
+LEFT OUTER JOIN `dinavis`.`collection` ON `dinavismaster`.`col_Id` = `collection`.`col_Id`
+LEFT OUTER JOIN `dinavis`.`source` ON `dinavismaster`.`sou_Id` = `source`.`sou_Id`
+LEFT OUTER JOIN `dinavis`.`measurement` ON `dinavismaster`.`mea_Id` = `measurement`.`mea_Id`
+LEFT OUTER JOIN `dinavis`.`institutioncode` ON `dinavismaster`.`InsCod_Id` = `institutioncode`.`InsCod_Id`
+LEFT OUTER JOIN `dinavis`.`specie` ON `dinavismaster`.`spe_Id` = `specie`.`spe_Id`
+LEFT OUTER JOIN `dinavis`.`taxonomy` ON `dinavismaster`.`tax_Id` = `taxonomy`.`tax_Id`
+LEFT OUTER JOIN `dinavis`.`kingdom` ON `dinavismaster`.`kin_Id` = `kingdom`.`kin_Id`
+LEFT OUTER JOIN `dinavis`.`phylum` ON `dinavismaster`.`phy_Id` = `phylum`.`phy_Id`
+LEFT OUTER JOIN `dinavis`.`class` ON `dinavismaster`.`cla_Id` = `class`.`cla_Id`
+LEFT OUTER JOIN `dinavis`.`orders` ON `dinavismaster`.`ord_Id` = `orders`.`ord_Id`
+LEFT OUTER JOIN `dinavis`.`family` ON `dinavismaster`.`fam_Id` = `family`.`fam_Id`
+LEFT OUTER JOIN `dinavis`.`genus` ON `dinavismaster`.`gen_Id` = `genus`.`gen_Id`
+LEFT OUTER JOIN `dinavis`.`subgenus` ON `dinavismaster`.`subGen_Id` = `subgenus`.`subGen_Id`
+LEFT OUTER JOIN `dinavis`.`specificepithet` ON `dinavismaster`.`speEpi_Id` = `specificepithet`.`speEpi_Id`
+LEFT OUTER JOIN `dinavis`.`infraspecificepithet` ON `dinavismaster`.`infSpeEpi_Id` = `infraspecificepithet`.`infSpeEpi_Id`
+LEFT OUTER JOIN `dinavis`.`threatstatus` ON `dinavismaster`.`thrSta_Id` = `threatstatus`.`thrSta_Id`
+LEFT OUTER JOIN `dinavis`.`citesstatus` ON `dinavismaster`.`citSta_Id` = `citesstatus`.`citSta_Id`
+LEFT OUTER JOIN `dinavis`.`invasivestatus` ON `dinavismaster`.`invSta_Id` = `invasivestatus`.`invSta_Id`
+LEFT OUTER JOIN `dinavis`.`endemicstatus` ON `dinavismaster`.`endSta_Id` = `endemicstatus`.`endSta_Id`
+LEFT OUTER JOIN `dinavis`.`usestatus` ON `dinavismaster`.`useSta_Id` = `usestatus`.`useSta_Id`
+LEFT OUTER JOIN `dinavis`.`layersvalues` ON `dinavismaster`.`layVal_Id` = `layersvalues`.`layVal_Id`
+LEFT OUTER JOIN `dinavis`.`layer` ON `dinavismaster`.`lay_Id` = `layer`.`lay_Id`
+LEFT OUTER JOIN `dinavis`.`uicn` ON `dinavismaster`.`uicn_Id` = `uicn`.`uicn_Id`
+LEFT OUTER JOIN `dinavis`.`cites` ON `dinavismaster`.`cit_Id` = `cites`.`cit_Id`
+LEFT OUTER JOIN `dinavis`.`state` ON `dinavismaster`.`sta_Id` = `state`.`sta_Id`
+LEFT OUTER JOIN `dinavis`.`sex` ON `dinavismaster`.`sex_Id` = `sex`.`sex_Id`
+
+
+
+where 
+
+`citesstatus`.`citSta_Cites` like '%II%'
+OR `class`.`cla_Description` like '%Mammalia%'
+
+OR `measurement`.`mea_MeasurementUnit` like '%xxxx%'
+OR `measurement`.`mea_MeasurementValue` like '%xxxx%'
+OR `threatstatus`.`thrSta_Description` like '%xxxx%'
+OR `kingdom`.`kin_Description` like '%xxxx%'
+OR `phylum`.`phy_Description` like '%xxxx%'
+OR `orders`.`ord_Description` like '%xxxx%'
+OR `genus`.`gen_Description` like '%xxxx%'
+OR `subgenus`.`subGen_Subgenus` like '%xxxx%'
+OR `specificepithet`.`speEpi_SpecificEpithet` like '%xxxx%'
+OR `infraspecificepithet`.`infSpeEpi_InfraspecificEpithet` like '%xxxx%'
+OR `invasivestatus`.`invSta_Invasive` like '%xxxx%'
+OR `endemicstatus`.`endSta_Endemic` like '%xxxx%'
+OR `habitat`.`hab_Description` like '%xxxx%'
+OR `region`.`reg_Description` like '%xxxx%'
+

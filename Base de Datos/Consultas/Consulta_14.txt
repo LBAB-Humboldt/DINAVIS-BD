@@ -1,0 +1,84 @@
+﻿/*
+Author: Luis HernanCardenas Guerrero
+Creation date: 03/04/2015
+Query name: Estado de la base de datos
+Number related tables: 18
+Related tables: dinavismaster, Specie, SpatialRecord, Measurement, Taxonomy, Kingdom, Phylum, Class, Orders, Family, Genus, subgenus, specificEpithet, infraSpecificEpithet, SpatialRecord, Map	Measurement, Taxonomy.
+Target: row the species in the data base
+Query semantics: ¿Cuántas especies (registros, medidas) se tienen en la base de datos?
+Number Filters: 0
+Filters: 
+*/
+
+SELECT * FROM (
+	SELECT COUNT(*) CANTIDADkingdom FROM kingdom
+)RESULT
+WHERE CANTIDADkingdom > 1;
+
+SELECT * FROM (
+	SELECT COUNT(*) CANTIDADphylum FROM phylum
+)RESULT
+WHERE CANTIDADphylum > 1;
+
+SELECT * FROM (
+	SELECT COUNT(*) CANTIDADclass FROM class
+)RESULT
+WHERE CANTIDADclass > 1;
+
+SELECT * FROM (
+	SELECT COUNT(*) CANTIDADorders FROM orders
+)RESULT
+WHERE CANTIDADorders > 1;
+
+SELECT * FROM (
+	SELECT COUNT(*) CANTIDADfamily FROM family
+)RESULT
+WHERE CANTIDADfamily > 1
+;
+
+SELECT * FROM (
+	SELECT COUNT(*) CANTIDADgenus FROM genus
+)RESULT
+WHERE CANTIDADgenus > 1;
+
+SELECT * FROM (
+	SELECT COUNT(*) CANTIDADsubgenus FROM subgenus
+)RESULT
+WHERE CANTIDADsubgenus > 1;
+
+SELECT * FROM (
+	SELECT COUNT(*) CANTIDADspecificepithet FROM specificepithet
+)RESULT
+WHERE CANTIDADspecificepithet > 1;
+
+
+
+SELECT * FROM (
+	SELECT COUNT(*) CANTIDADspatialrecord FROM spatialrecord
+)RESULT
+WHERE CANTIDADspatialrecord > 1
+;
+
+SELECT * FROM (
+	SELECT COUNT(*) CANTIDADmap FROM map
+)RESULT
+WHERE CANTIDADmap > 1
+;
+
+SELECT * FROM (
+	SELECT COUNT(*) CANTIDADmeasurement FROM measurement
+)RESULT
+WHERE CANTIDADmeasurement > 1;
+
+SELECT * FROM (
+	SELECT COUNT(*) CANTIDADtaxonomy FROM taxonomy
+)RESULT
+WHERE CANTIDADtaxonomy > 1;
+
+SELECT * FROM (
+	SELECT COUNT(*) CANTIDADmeasurement FROM measurement
+)RESULT
+WHERE CANTIDADmeasurement > 1
+;
+
+

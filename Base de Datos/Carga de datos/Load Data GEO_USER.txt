@@ -1,0 +1,21 @@
+/*
+Author: Luis Hernán Cárdenas Guerrero
+Creation date: 01/06/2015
+Query name: Carga Manual CITES.csv
+*/
+/*
+La sentencia borra la información actual de la tabla temporal, realizando con esto el mantenimiento.
+*/
+truncate temporalcites;
+/*
+La sentencia carga información a la tabla temporal.
+*/
+load data local infile 'C:/CITES.csv' -- Esta ruta puede ser cambiada de acuerdo a la ubicación del archivo 
+into table temporalcites 
+fields terminated by ';' optionally enclosed by '"'
+lines terminated by '\n'  -- On windows you may need to use `\r\n'
+ignore 1 lines; 
+/*
+La sentencia realiza la distribución de la información de la tabla temporal a las tablas finales.
+*/
+select insert_DinavisMaster(6);

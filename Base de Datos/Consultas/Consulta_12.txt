@@ -1,0 +1,17 @@
+﻿/*
+Author: Luis HernanCardenas Guerrero
+Creation date: 03/04/2015
+Query name: Representatividad CITES
+Number related tables: 4
+Related tables: Cites, Taxonomy, dinavismaster, specie
+Target: Number of species and number of rows in CITES.
+Query semantics: ¿Cuántas especies están en DINAVIS de las que están en CITES?
+Number Filters: 0
+Filters: 
+*/
+
+SELECT specie.spe_Description FROM dinavis.dinavismaster, dinavis.specie  where dinavismaster.cit_Id != 0 and dinavismaster.spe_Id = specie.spe_Id
+AND EXISTS
+(SELECT specie.spe_Description FROM dinavis.dinavismaster, dinavis.specie where dinavismaster.cit_Id = 0 and dinavismaster.spe_Id = specie.spe_Id)
+
+

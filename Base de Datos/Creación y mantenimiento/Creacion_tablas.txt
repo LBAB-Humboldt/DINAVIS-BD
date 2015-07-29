@@ -1,0 +1,16 @@
+/*
+Author: Luis Hernan Cardenas Guerrero
+Creation date: 01/06/2015
+Query name: Creacion Tabla
+*/
+CREATE TABLE `nombredetabla` (
+  `nombreindice` int(11) NOT NULL AUTO_INCREMENT,
+  `campo` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`nombreindice `),
+  UNIQUE KEY ` nombreindice _UNIQUE` (`nombreindice `)
+) ENGINE=InnoDB AUTO_INCREMENT=1030 DEFAULT CHARSET=utf8;
+/*
+La sentencia crea el vinculo del indice con la tabla maestra.
+*/
+ALTER TABLE `dinavis`.`dinavismaster` 
+ADD COLUMN ` nombreindice ` VARCHAR(45) NULL AFTER `diMa_DateCreate`;

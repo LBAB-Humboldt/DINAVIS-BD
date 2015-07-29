@@ -1,0 +1,32 @@
+/*
+Author: Luis Hernan Cardenas Guerrero
+Creation date: 01/06/2015
+Query name: Consulta MAP
+Number related tables: 3
+Related tables: Se Colsulta la base de datos para reconstruir el formato MAP_USER 
+*/
+Select spe_Description,
+spe_speciesBlank,
+spe_Iucn_Id,
+spe_SpeciesOriginal,
+spe_AcceptedNameUsage,
+spe_IdOld,
+map_IDModel,
+map_IDModelValid,
+map_ModelName,
+map_typeModel,
+sou_Description,
+sou_SourceP,
+sou__AsocciatedReferences,
+sou_Title,
+sou_Author,
+sou_Appointment,
+sou_Year,
+sou_DBSource,
+sou_InternalID,
+sou_InternalSource
+/*La sentencia iguala indices para recopilar los correspondientes.
+*/
+FROM Specie, Map, dinavismaster, source
+WHERE dinavismaster.spe_Id = specie.spe_Id AND dinavismaster.map_Id = map.map_Id
+AND dinavismaster.sou_Id = source.sou_Id

@@ -1,0 +1,58 @@
+/*
+Author: Luis Hernan Cardenas Guerrero
+Creation date: 01/06/2015
+Query name: Consulta MEA
+Number related tables: 8
+Related tables: Se Colsulta la base de datos para reconstruir el formato MEA_USER 
+*/
+select
+spe_Description,
+spe_speciesBlank,
+spe_Iucn_Id,
+spe_SpeciesOriginal,
+spe_AcceptedNameUsage,
+spe_IdOld,
+mea_MeasurementDeterminedBy,
+mea_MeasurementRemarks,
+mea_MeasurementType,
+mea_MeasurementUnit,
+mea_MeasurementValue,
+mea_MeasurementAccuracy,
+mea_MeasurementDeterminedDate,
+mea_MeasurementMethod,
+mea_MeasurementID,
+mea_Standard,
+mea_Topic,
+citSta_Cites,
+citSta_DateCites,
+citSta_SourceCites,
+invSta_Invasive,
+invSta_IsInvasive,
+invSta_DateInvasive,
+thrSta_Description,
+thrSta_UicnNational,
+thrSta_DateUicnNational,
+thrSta_UicnInternational,
+thrSta_DateUicnInternational,
+endSta_Endemic,
+endSta_IsEndemicVerbatim,
+endSta_DateEndemic,
+useSta_SourceType,
+useSta_UseTypeVerbatim,
+sou_Description,
+sou_SourceP,
+sou__AsocciatedReferences,
+sou_Title,
+sou_Author,
+sou_Appointment,
+sou_Year,
+sou_DBSource,
+sou_InternalID,
+sou_InternalSource
+/*La sentencia iguala indices para recopilar los correspondientes.
+*/
+FROM Specie, dinavismaster, Measurement, citesStatus, invasiveStatus, ThreatStatus, endemicStatus, useStatus, Source
+WHERE dinavismaster.spe_Id = specie.spe_Id AND dinavismaster.mea_Id = measurement.mea_Id
+AND dinavismaster.citSta_Id = citesstatus.citSta_Id AND dinavismaster.invSta_Id = invasivestatus.invSta_Id
+AND dinavismaster.thrSta_Id = threatstatus.thrSta_Id AND dinavismaster.endSta_Id = endemicstatus.endSta_Id
+AND dinavismaster.useSta_Id = usestatus.useSta_Id AND dinavismaster.sou_Id = source.sou_Id 

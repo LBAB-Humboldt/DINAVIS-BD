@@ -1,0 +1,15 @@
+/*
+Author: Luis Hernan Cardenas Guerrero
+Creation date: 01/06/2015
+Query name: Actualizacion de un campo Campo dependiendo de la operacion de otro de la misma tabla
+*/
+UPDATE nombredelatabla SET Campo1 = IF(campo2/campo3>=5,1,0);
+/*
+*La sentencia actualizacion de un campo Campo dependiendo de la 
+*operacion de otro campo de una tabla diferente.
+*/
+UPDATE tablaaactualizar SET campoaactualizar =
+     ( SELECT sum( campoacalcular ) aliasdecampo
+		FROM tabla2
+		WHERE campotabla2 = 'valor')
+     WHERE campo tablaaactualizar = 'valor';

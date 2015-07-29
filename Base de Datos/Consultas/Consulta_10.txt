@@ -1,0 +1,149 @@
+﻿/*
+Author: Luis HernanCardenas Guerrero
+Creation date: 03/04/2015
+Query name: Variables localizada
+Number related tables: 5
+Related tables: dinavismaster, Specie, Measurement, SpatialRecord, Taxonomy.
+Target: List of the ( s ) kind ( s ) with ' j' XYZ values ​​for the variable in the place X'Y'Z '
+Query semantics: ¿Cuáles medidas hay para la(s) especie(s) (una en particular, varias o todas) para la variable XYZ igual a 'i' (o entre A y B, o mayor que, menor qué o difernte qué) en el municipio X'Y'Z' (o parque, cuenca,  o departamento)
+Number Filters: 4
+Filters: mea_Description, mea_MeasurementUnit, mea_MeasurementValue y Tax_scientificName.
+*/
+
+SELECT 
+`dinavismaster`.`dima_Id`,
+`measurement`.`mea_Id`,
+`measurement`.`mea_MeasurementDeterminedBy`,
+`measurement`.`mea_MeasurementRemarks`,
+`measurement`.`mea_MeasurementType`,
+`measurement`.`mea_MeasurementUnit`,
+`measurement`.`mea_MeasurementValue`,
+`measurement`.`mea_Standard`,
+`measurement`.`mea_Topic`,
+
+`spatialrecord`.`spaRec_Id`,
+`spatialrecord`.`spaRec_OccurrenceID`,
+`spatialrecord`.`spaRec_AccessRights`,
+`spatialrecord`.`spaRec_RightsHolder`,
+`spatialrecord`.`spaRec_Rights`,
+`spatialrecord`.`spaRec_CoordinateUncertaintyInMeters`,
+`spatialrecord`.`spaRec_DecimalLatitude`,
+`spatialrecord`.`spaRec_DecimalLongitude`,
+`spatialrecord`.`spaRec_EventDate`,
+`spatialrecord`.`spaRec_GeoreferenceRemarks`,
+`spatialrecord`.`spaRec_GeodeticDatum`,
+`spatialrecord`.`spaRec_GeoreferencedBy`,
+`spatialrecord`.`spaRec_GeoreferencedDate`,
+`spatialrecord`.`spaRec_GeoreferenceProtocol`,
+`spatialrecord`.`spaRec_GeoreferenceSource`,
+`spatialrecord`.`spaRec_GeoreferenceVerificationStatus`,
+`spatialrecord`.`spaRec_GeoValidationLBAB`,
+`spatialrecord`.`spaRec_CatalogNumber`,
+`spatialrecord`.`spaRec_LBABuse`,
+`spatialrecord`.`spaRec_Locality`,
+`spatialrecord`.`spaRec_LocationRemarks`,
+`spatialrecord`.`spaRec_RecordBasis`,
+`spatialrecord`.`spaRec_RegisterDate`,
+`spatialrecord`.`spaRec_RegisterInLBABModels`,
+`spatialrecord`.`spaRec_AssociatedMedia`,
+`spatialrecord`.`spaRec_VerbatimCoordinateSystem`,
+`spatialrecord`.`spaRec_VerbatimLatitude`,
+`spatialrecord`.`spaRec_VerbatimLocality`,
+`spatialrecord`.`spaRec_VerbatimLongitude`,
+`spatialrecord`.`spaRec_RecordedBy`,
+`spatialrecord`.`spaRec_OccurrenceRemarks`,
+
+
+
+`taxonomy`.`tax_Id`,
+`taxonomy`.`tax_IdentificationQualifier`,
+`taxonomy`.`tax_NamePublishedIn`,
+`taxonomy`.`tax_ScientificName`,
+`taxonomy`.`tax_ScientificNameAuthorship`,
+`taxonomy`.`tax_ScientificNameID`,
+`taxonomy`.`tax_TaxonConceptId`,
+`taxonomy`.`tax_TaxonomicStatus`,
+`taxonomy`.`tax_TaxonRank`,
+`taxonomy`.`tax_TaxonRemarks`,
+`taxonomy`.`tax_VernacularName`,
+`taxonomy`.`tax_originalNameUsage`,
+`taxonomy`.`tax_taxValidationLBAB`,
+
+`kingdom`.`kin_Id`,
+`kingdom`.`kin_Description`,
+`kingdom`.`kin_LSID`,
+
+`phylum`.`phy_Id`,
+`phylum`.`phy_Description`,
+`phylum`.`phy_LSID`,
+
+`class`.`cla_Id`,
+`class`.`cla_Description`,
+`class`.`cla_LSID`,
+
+`orders`.`ord_Id`,
+`orders`.`ord_Description`,
+`orders`.`ord_LSID`,
+
+`genus`.`gen_Id`,
+`genus`.`gen_Description`,
+`genus`.`gen_LSID`,
+
+`subgenus`.`subGen_Id`,
+`subgenus`.`subGen_Subgenus`,
+
+`specificepithet`.`speEpi_Id`,
+`specificepithet`.`speEpi_SpecificEpithet`,
+
+`infraspecificepithet`.`infSpeEpi_Id`,
+`infraspecificepithet`.`infSpeEpi_InfraspecificEpithet`
+
+
+
+
+FROM `dinavis`.`dinavismaster`
+LEFT OUTER JOIN `dinavis`.`map` ON `dinavismaster`.`map_Id` = `map`.`map_Id`
+LEFT OUTER JOIN `dinavis`.`spatialrecord` ON `dinavismaster`.`spaRec_Id` = `spatialrecord`.`spaRec_Id`
+LEFT OUTER JOIN `dinavis`.`continent` ON `dinavismaster`.`con_Id` = `continent`.`con_Id`
+LEFT OUTER JOIN `dinavis`.`country` ON `dinavismaster`.`cou_Id` = `country`.`cou_Id`
+LEFT OUTER JOIN `dinavis`.`department` ON `dinavismaster`.`dep_Id` = `department`.`dep_Id`
+LEFT OUTER JOIN `dinavis`.`municipality` ON `dinavismaster`.`mun_Id` = `municipality`.`mun_Id`
+LEFT OUTER JOIN `dinavis`.`habitat` ON `dinavismaster`.`hab_Id` = `habitat`.`hab_Id`
+LEFT OUTER JOIN `dinavis`.`region` ON `dinavismaster`.`reg_Id` = `region`.`reg_Id`
+LEFT OUTER JOIN `dinavis`.`collection` ON `dinavismaster`.`col_Id` = `collection`.`col_Id`
+LEFT OUTER JOIN `dinavis`.`source` ON `dinavismaster`.`sou_Id` = `source`.`sou_Id`
+LEFT OUTER JOIN `dinavis`.`measurement` ON `dinavismaster`.`mea_Id` = `measurement`.`mea_Id`
+LEFT OUTER JOIN `dinavis`.`institutioncode` ON `dinavismaster`.`InsCod_Id` = `institutioncode`.`InsCod_Id`
+LEFT OUTER JOIN `dinavis`.`specie` ON `dinavismaster`.`spe_Id` = `specie`.`spe_Id`
+LEFT OUTER JOIN `dinavis`.`taxonomy` ON `dinavismaster`.`tax_Id` = `taxonomy`.`tax_Id`
+LEFT OUTER JOIN `dinavis`.`kingdom` ON `dinavismaster`.`kin_Id` = `kingdom`.`kin_Id`
+LEFT OUTER JOIN `dinavis`.`phylum` ON `dinavismaster`.`phy_Id` = `phylum`.`phy_Id`
+LEFT OUTER JOIN `dinavis`.`class` ON `dinavismaster`.`cla_Id` = `class`.`cla_Id`
+LEFT OUTER JOIN `dinavis`.`orders` ON `dinavismaster`.`ord_Id` = `orders`.`ord_Id`
+LEFT OUTER JOIN `dinavis`.`family` ON `dinavismaster`.`fam_Id` = `family`.`fam_Id`
+LEFT OUTER JOIN `dinavis`.`genus` ON `dinavismaster`.`gen_Id` = `genus`.`gen_Id`
+LEFT OUTER JOIN `dinavis`.`subgenus` ON `dinavismaster`.`subGen_Id` = `subgenus`.`subGen_Id`
+LEFT OUTER JOIN `dinavis`.`specificepithet` ON `dinavismaster`.`speEpi_Id` = `specificepithet`.`speEpi_Id`
+LEFT OUTER JOIN `dinavis`.`infraspecificepithet` ON `dinavismaster`.`infSpeEpi_Id` = `infraspecificepithet`.`infSpeEpi_Id`
+LEFT OUTER JOIN `dinavis`.`threatstatus` ON `dinavismaster`.`thrSta_Id` = `threatstatus`.`thrSta_Id`
+LEFT OUTER JOIN `dinavis`.`citesstatus` ON `dinavismaster`.`citSta_Id` = `citesstatus`.`citSta_Id`
+LEFT OUTER JOIN `dinavis`.`invasivestatus` ON `dinavismaster`.`invSta_Id` = `invasivestatus`.`invSta_Id`
+LEFT OUTER JOIN `dinavis`.`endemicstatus` ON `dinavismaster`.`endSta_Id` = `endemicstatus`.`endSta_Id`
+LEFT OUTER JOIN `dinavis`.`usestatus` ON `dinavismaster`.`useSta_Id` = `usestatus`.`useSta_Id`
+LEFT OUTER JOIN `dinavis`.`layersvalues` ON `dinavismaster`.`layVal_Id` = `layersvalues`.`layVal_Id`
+LEFT OUTER JOIN `dinavis`.`layer` ON `dinavismaster`.`lay_Id` = `layer`.`lay_Id`
+LEFT OUTER JOIN `dinavis`.`uicn` ON `dinavismaster`.`uicn_Id` = `uicn`.`uicn_Id`
+LEFT OUTER JOIN `dinavis`.`cites` ON `dinavismaster`.`cit_Id` = `cites`.`cit_Id`
+LEFT OUTER JOIN `dinavis`.`state` ON `dinavismaster`.`sta_Id` = `state`.`sta_Id`
+LEFT OUTER JOIN `dinavis`.`sex` ON `dinavismaster`.`sex_Id` = `sex`.`sex_Id`
+
+
+
+
+
+where 
+
+`measurement`.`mea_MeasurementUnit` like '%xxxx%'
+OR `measurement`.`mea_MeasurementValue` like '%xxxx%'
+OR `taxonomy`.`tax_ScientificName` like '%Acacia tenuifolia%'
+

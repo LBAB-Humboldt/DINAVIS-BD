@@ -1,0 +1,7 @@
+/*
+Author: Luis Hernan Cardenas Guerrero
+Creation date: 01/06/2015
+Query name: Creacion Campo adicional a una tabla ya existente
+*/
+ALTER TABLE `dinavis`.`nombredelatablaexistente` 
+ADD COLUMN `nombredelcampo` VARCHAR(45) NULL DEFAULT NULL AFTER `nombredelultimocampocreado`;

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14339703180271" configfile="/dinavis/WebRoot/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="122" y="178" id="pf14344688181480" referenceLink="//@navigationRule.1/@navigationCase.1/@toViewId|" outlinks="pf14344688181481 pf14344688181482" inlinks="pf14344688181482 pf14344688181483" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="archivo.xhtml" x="338" y="178" id="pf14344688181484" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" outlinks="pf14344688181483 pf14344688181485" inlinks="pf14344688181481 pf14344688181485" path="/archivo.xhtml"/>
+  <links id="pf14344688181481" target="pf14344688181484" source="pf14344688181480" outcome="menu"/>
+  <links id="pf14344688181482" target="pf14344688181480" source="pf14344688181480" outcome="login">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
+  <links id="pf14344688181483" target="pf14344688181480" source="pf14344688181484" outcome="login"/>
+  <links id="pf14344688181485" target="pf14344688181484" source="pf14344688181484" outcome="archivo"/>
+</pageflow:Pageflow>

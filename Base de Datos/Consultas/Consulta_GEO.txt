@@ -1,0 +1,87 @@
+/*
+Author: Luis Hernan Cardenas Guerrero
+Creation date: 01/06/2015
+Query name: Consulta GEO
+Number related tables: 12
+Related tables: Se Colsulta la base de datos para reconstruir el formato GEO_USER 
+*/
+select
+spe_Description,
+spe_speciesBlank,
+spe_Iucn_Id,
+spe_SpeciesOriginal,
+spe_AcceptedNameUsage,
+spe_IdOld,
+spaRec_OccurrenceID,
+spaRec_AccessRights,
+spaRec_RightsHolder,
+spaRec_Rights,
+spaRec_CoordinateUncertaintyInMeters,
+spaRec_DecimalLatitude,
+spaRec_DecimalLongitude,
+spaRec_GeoreferenceRemarks,
+spaRec_GeodeticDatum,
+spaRec_GeoreferencedBy,
+spaRec_GeoreferencedDate,
+spaRec_GeoreferenceProtocol,
+spaRec_GeoreferenceSource,
+spaRec_GeoreferenceVerificationStatus,
+spaRec_GeoValidationLBAB,
+spaRec_CatalogNumber,
+spaRec_LBABuse,
+spaRec_Locality,
+spaRec_LocationRemarks,
+spaRec_RecordBasis,
+spaRec_RegisterInLBABModels,
+spaRec_AssociatedMedia,
+spaRec_VerbatimCoordinateSystem,
+spaRec_VerbatimLatitude,
+spaRec_VerbatimLocality,
+spaRec_VerbatimLongitude,
+spaRec_RecordedBy,
+spaRec_identifiedBy,
+spaRec_OccurrenceRemarks,
+spaRec_VerbatimElevation,
+spaRec_MaximumEleMeters,
+spaRec_MinimumElevationInMeters,
+con_Name,
+country.cou_Description,
+country.cou_CodInternational,
+country.cou_CodGadm,
+mun_Description,
+mun_CodDivipola,
+mun_CodGadm,
+mun_Settlement,
+InsCod_Description,
+col_Code,
+hab_Description,
+hab_Habitat,
+hab_HabitatUICN,
+hab_HabitatIGAC,
+reg_Description,
+lay_Name,
+lay_URLsource,
+lay_TopicLayer,
+layVal_suggestedCountry,
+layVal_suggestedDepartment,
+layVal_suggestedMunicipality,
+dep_Description,
+dep_CodDivipola,
+dep_CodGadm,
+sou_Description,
+sou_SourceP,
+sou__AsocciatedReferences,
+sou_Title,
+sou_Author,
+sou_Appointment,
+sou_Year,
+sou_DBSource,
+sou_InternalID,
+sou_InternalSource
+/*La sentencia iguala indices para recopilar los correspondientes.
+*/
+FROM Specie, dinavismaster, SpatialRecord, continent, Country, municipality, InstitutionCode, Collection, habitat, Region, Layer, layersValues, Source, department
+WHERE dinavismaster.spe_Id = specie.spe_Id AND dinavismaster.spaRec_Id = spatialrecord.spaRec_Id AND dinavismaster.con_Id = continent.con_Id AND dinavismaster.cou_Id  = country.cou_Id
+AND dinavismaster.mun_Id = municipality.mun_Id AND dinavismaster.InsCod_Id = institutioncode.InsCod_Id AND dinavismaster.col_Id = collection. col_Id AND dinavismaster.hab_Id = habitat.hab_Id
+AND dinavismaster.reg_Id = region.reg_Id AND dinavismaster.lay_Id = layer.lay_Id AND dinavismaster.layVal_Id = layersvalues.layVal_Id AND dinavismaster.sou_Id = source.sou_Id
+AND dinavismaster.dep_Id = department.dep_Id

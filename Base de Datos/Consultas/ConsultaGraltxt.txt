@@ -1,0 +1,129 @@
+/*
+Author: Luis Hernan Cardenas Guerrero
+Creation date: 03/04/2015
+Query name: DiNavisMaster
+Number related tables: 35
+Related tables: Todas las existentes.
+Target: Index list of the entire database.
+Query semantics: ¿Cuáles indices existen en la base de datos.
+Number Filters: 0
+Filters:
+*/
+SELECT 
+`dinavismaster`.`dima_Id`,
+
+`dinavismaster`.`cit_Id`,
+
+`dinavismaster`.`citSta_Id`,
+
+`dinavismaster`.`cla_Id`,
+
+`dinavismaster`.`col_Id`,
+
+`dinavismaster`.`con_Id`,
+
+`dinavismaster`.`cou_Id`,
+
+`dinavismaster`.`endSta_Id`,
+
+`dinavismaster`.`dep_Id`,
+
+`dinavismaster`.`fam_Id`,
+
+`dinavismaster`.`infSpeEpi_Id`,
+
+`dinavismaster`.`invSta_Id`,
+
+`dinavismaster`.`mun_Id`,
+
+`dinavismaster`.`ord_Id`,
+
+`dinavismaster`.`layVal_Id`,
+
+`dinavismaster`.`gen_Id`,
+
+`dinavismaster`.`hab_Id`,
+
+`dinavismaster`.`InsCod_Id`,
+
+`dinavismaster`.`kin_Id`,
+
+`dinavismaster`.`lay_Id`,
+
+`dinavismaster`.`map_Id`,
+
+`dinavismaster`.`mea_Id`,
+
+`dinavismaster`.`phy_Id`,
+
+`dinavismaster`.`reg_Id`,
+
+`dinavismaster`.`speEpi_Id`,
+
+`dinavismaster`.`subGen_Id`,
+
+`dinavismaster`.`uicn_Id`,
+
+`dinavismaster`.`useSta_Id`,
+
+`dinavismaster`.`sex_Id`,
+
+`dinavismaster`.`sou_Id`,
+
+`dinavismaster`.`spaRec_Id`,
+
+`dinavismaster`.`spe_Id`,
+
+`dinavismaster`.`sta_Id`,
+
+`dinavismaster`.`tax_Id`,
+
+`dinavismaster`.`thrSta_Id`,
+
+`dinavismaster`.`diMa_DateCreate`
+
+
+FROM
+ 
+`dinavis`.`dinavismaster`
+
+
+/*La sentencia LEFT OUTER JOIN retorna la pareja de todos los valores de la tabla izquierda con los valores de la tabla de la derecha correspondientes, o retorna un valor nulo NULL en caso de no correspondencia.*/
+
+
+
+LEFT OUTER JOIN `dinavis`.`map` ON `dinavismaster`.`map_Id` = `map`.`map_Id`
+LEFT OUTER JOIN `dinavis`.`spatialrecord` ON `dinavismaster`.`spaRec_Id` = `spatialrecord`.`spaRec_Id`
+LEFT OUTER JOIN `dinavis`.`continent` ON `dinavismaster`.`con_Id` = `continent`.`con_Id`
+LEFT OUTER JOIN `dinavis`.`country` ON `dinavismaster`.`cou_Id` = `country`.`cou_Id`
+LEFT OUTER JOIN `dinavis`.`department` ON `dinavismaster`.`dep_Id` = `department`.`dep_Id`
+LEFT OUTER JOIN `dinavis`.`municipality` ON `dinavismaster`.`mun_Id` = `municipality`.`mun_Id`
+LEFT OUTER JOIN `dinavis`.`habitat` ON `dinavismaster`.`hab_Id` = `habitat`.`hab_Id`
+LEFT OUTER JOIN `dinavis`.`region` ON `dinavismaster`.`reg_Id` = `region`.`reg_Id`
+LEFT OUTER JOIN `dinavis`.`collection` ON `dinavismaster`.`col_Id` = `collection`.`col_Id`
+LEFT OUTER JOIN `dinavis`.`source` ON `dinavismaster`.`sou_Id` = `source`.`sou_Id`
+LEFT OUTER JOIN `dinavis`.`measurement` ON `dinavismaster`.`mea_Id` = `measurement`.`mea_Id`
+LEFT OUTER JOIN `dinavis`.`institutioncode` ON `dinavismaster`.`InsCod_Id` = `institutioncode`.`InsCod_Id`
+LEFT OUTER JOIN `dinavis`.`specie` ON `dinavismaster`.`spe_Id` = `specie`.`spe_Id`
+LEFT OUTER JOIN `dinavis`.`taxonomy` ON `dinavismaster`.`tax_Id` = `taxonomy`.`tax_Id`
+LEFT OUTER JOIN `dinavis`.`kingdom` ON `dinavismaster`.`kin_Id` = `kingdom`.`kin_Id`
+LEFT OUTER JOIN `dinavis`.`phylum` ON `dinavismaster`.`phy_Id` = `phylum`.`phy_Id`
+LEFT OUTER JOIN `dinavis`.`class` ON `dinavismaster`.`cla_Id` = `class`.`cla_Id`
+LEFT OUTER JOIN `dinavis`.`orders` ON `dinavismaster`.`ord_Id` = `orders`.`ord_Id`
+LEFT OUTER JOIN `dinavis`.`family` ON `dinavismaster`.`fam_Id` = `family`.`fam_Id`
+LEFT OUTER JOIN `dinavis`.`genus` ON `dinavismaster`.`gen_Id` = `genus`.`gen_Id`
+LEFT OUTER JOIN `dinavis`.`subgenus` ON `dinavismaster`.`subGen_Id` = `subgenus`.`subGen_Id`
+LEFT OUTER JOIN `dinavis`.`specificepithet` ON `dinavismaster`.`speEpi_Id` = `specificepithet`.`speEpi_Id`
+LEFT OUTER JOIN `dinavis`.`infraspecificepithet` ON `dinavismaster`.`infSpeEpi_Id` = `infraspecificepithet`.`infSpeEpi_Id`
+LEFT OUTER JOIN `dinavis`.`threatstatus` ON `dinavismaster`.`thrSta_Id` = `threatstatus`.`thrSta_Id`
+LEFT OUTER JOIN `dinavis`.`citesstatus` ON `dinavismaster`.`citSta_Id` = `citesstatus`.`citSta_Id`
+LEFT OUTER JOIN `dinavis`.`invasivestatus` ON `dinavismaster`.`invSta_Id` = `invasivestatus`.`invSta_Id`
+LEFT OUTER JOIN `dinavis`.`endemicstatus` ON `dinavismaster`.`endSta_Id` = `endemicstatus`.`endSta_Id`
+LEFT OUTER JOIN `dinavis`.`usestatus` ON `dinavismaster`.`useSta_Id` = `usestatus`.`useSta_Id`
+LEFT OUTER JOIN `dinavis`.`layersvalues` ON `dinavismaster`.`layVal_Id` = `layersvalues`.`layVal_Id`
+LEFT OUTER JOIN `dinavis`.`layer` ON `dinavismaster`.`lay_Id` = `layer`.`lay_Id`
+LEFT OUTER JOIN `dinavis`.`uicn` ON `dinavismaster`.`uicn_Id` = `uicn`.`uicn_Id`
+LEFT OUTER JOIN `dinavis`.`cites` ON `dinavismaster`.`cit_Id` = `cites`.`cit_Id`
+LEFT OUTER JOIN `dinavis`.`state` ON `dinavismaster`.`sta_Id` = `state`.`sta_Id`
+LEFT OUTER JOIN `dinavis`.`sex` ON `dinavismaster`.`sex_Id` = `sex`.`sex_Id`
+

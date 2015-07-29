@@ -1,0 +1,58 @@
+/*
+Author: Luis Hernán Cárdenas Guerrero
+Creation date: 01/06/2015
+Query name: Eliminación a las tablas de la base de datos Dinavis.
+*/
+/*
+La sentencia borra los datos existentes en cada una de las tablas.
+*/
+truncate temporal;
+truncate temporaltax;
+truncate temporalmap;
+truncate temporalgeo;
+truncate temporaluicn;
+truncate temporalcites;
+truncate temporalmapuser;
+truncate temporalmeauser;
+truncate temporaltaxuser;
+truncate temporalgeouser;
+delete from class where cla_Id >= 1;
+delete from collection where col_Id >= 1;
+delete from continent where con_Id >= 1;
+delete from country where cou_Id >= 1;
+delete from habitat where hab_Id >= 1;
+delete from institutioncode where InsCod_Id >= 1;
+delete from kingdom where kin_Id >= 1;
+delete from region where reg_Id >= 1;
+delete from sex where sex_Id >= 1;
+delete from basin where bas_Id >= 1;
+delete from biome where bio_Id >= 1;
+delete from family where fam_Id >= 1;
+delete from genus where gen_Id >= 1;
+delete from layer where lay_Id >= 1;
+delete from park where par_Id >= 1;
+delete from phylum where phy_Id >= 1;
+delete from state where sta_Id >= 1;
+delete from uicn where uicn_Id >= 1;
+delete from specie where spe_Id >= 1;
+delete from dinavismaster where dima_Id >= 1;
+delete from measurement where mea_Id >= 1;
+delete from source where sou_Id >= 1;
+delete from taxonomy where tax_Id >= 1;
+delete from spatialrecord where spaRec_Id >= 1;
+delete from map where map_Id >= 1;
+delete from department where dep_Id >= 1;
+delete from municipality where mun_Id >= 1;
+delete from citesstatus where citSta_Id >= 1;
+delete from invasivestatus where invSta_Id >= 1;
+delete from threatstatus where thrSta_Id >= 1;
+delete from endemicstatus where endSta_Id >= 1;
+delete from usestatus where useSta_Id >= 1;
+delete from spatialrecord where spaRec_Id >= 1;
+delete from municipality where mun_Id >= 1;
+delete from layersvalues where layVal_Id >= 1;
+delete from infraspecificepithet where infSpeEpi_Id >= 1;
+delete from orders where ord_Id >= 1;
+delete from cites where cit_Id >= 1;
+delete from subgenus where subGen_Id >= 1;
+delete from specificepithet where speEpi_Id >= 1;
